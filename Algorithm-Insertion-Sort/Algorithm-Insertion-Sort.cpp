@@ -32,14 +32,15 @@ void generate_array(int array_name[], int size){
 
 void insertion_sort(int array_name[], int size){
     
-    for(int i = 1; i<size; i++){ // My interpretation of insertion sort
-        for(int j=i; j>0; j--){ // CHATGPT recommends replacing this with a while loop and using a key variable
-            if(array_name[j-1] > array_name[j]){
-            int temp=array_name[j-1];
-            array_name[j-1] = array_name[j];
-            array_name[j] = temp;
-            }
+    for(int i = 1; i<size; i++){ // More efficient for when multiple numbers need to swapped since the actual swap occurs only once
+        int key=array_name[i];
+        int j = i-1;
+        
+        while(j >= 0 && array_name[j] > key){
+            array_name[j+1] = array_name[j];
+            j--;
         }
-    printarray(array_name, size);
+        array_name[j+1]=key;
+        printarray(array_name, size);
     }
 }
